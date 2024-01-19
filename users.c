@@ -29,5 +29,18 @@ User* createUser(char* username, char* password) {
 	};
 	strcpy(newUser->password, password);
 
+	// assign 0 funds to user
+	newUser->funds = 0;
+
 	return newUser;
 }
+
+int deleteUser(User* user) {
+	if (user == NULL) {
+		return(0);
+	};
+	free(user->username);
+	free(user->password);
+	free(user);
+	return(0);
+};

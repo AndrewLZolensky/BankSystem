@@ -13,6 +13,7 @@ User* createUser(char* username, char* password) {
 	User* newUser = (User*) malloc(sizeof(User));
 	if (newUser == NULL) {
 		fprintf(stderr, "Error allocating memory for new user\n");
+		return NULL;
 	};
 	
 	// allocate space for username and try to copy username into username field
@@ -57,7 +58,7 @@ int deleteUser(User* user) {
  * Add given user to given linked list of user nodes
  * RETURN: status code
  */
-int addUserToList(UserNode* head, User* user){
+int addUserToList(UserNode** head, User* user){
 
 	// allocate space for  new user node
 	UserNode* newUserNode = (UserNode*) malloc(sizeof(UserNode));
@@ -73,13 +74,13 @@ int addUserToList(UserNode* head, User* user){
 	newUserNode->next = NULL;
 
 	// if list empty, set head to new UserNode
-	if (head == NULL) {
-		head = newUserNode;
+	if (*head == NULL) {
+		*head = newUserNode;
 		return(0);
 	};
 
 	// otherwise, iterate through linked list until end and append
-	UserNode* temp_ptr = head;
+	UserNode* temp_ptr = *head;
        	while (temp_ptr->next) {
 	       temp_ptr = temp_ptr->next;
        };
@@ -125,4 +126,20 @@ void printUserList(UserNode* head) {
 		temp_ptr = temp_ptr->next;
 	} while (temp_ptr);
 	return;
+};
+
+int removeUserFromList(UserNode** ptr_to_head, char* username, char* password){
+	if (*ptr_to_head == NULL) {
+		fprintf(stderr, "Error deleting user from list: list is NULL\n");
+		return(1);
+	};
+
+	UserNode* temp = *ptr_to_head;
+	while (temp->next) {
+		UserNode* nextUserNode = temp->next;
+		if (strcmp(nextUserNode->val->username, username) == 0) {
+			temp->next = nextUserNode->next;
+			deleteUser(nextUserNode->val);
+		};
+	};
 };

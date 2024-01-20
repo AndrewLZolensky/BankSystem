@@ -6,10 +6,8 @@
 int main(){
 	char* username = "Andrew";
 	char* password = "stars";
-	User* newUser = createUser(username, password);
-	printf("New user named: %s\n", newUser->username);
-	printf("New user password: %s\n", newUser->password);
-	printf("Funds available: $%.2f\n", newUser->funds);
-	deleteUser(newUser);
+	User* Andrew  = createUser(username, password);
+	printUser(Andrew);
+	deleteUser(Andrew);
 	return(0);
 }

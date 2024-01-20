@@ -24,7 +24,7 @@ int deleteUser(User* user);
 /*
 Add a new user to linked list "Users"
 */
-int addUserToList(UserNode* users, User* user_ptr);
+int addUserToList(UserNode** users, User* user_ptr);
 
 /*
  * Prints a single User
@@ -44,7 +44,7 @@ void printUserList(UserNode* head);
 /*
 Delete a user from linked list given username and password
 */
-int removeUserFromList(UserNode* users, char* username, char* password);
+int removeUserFromList(UserNode** users, char* username, char* password);
 
 /*
 Check if a user with given credentials (username and password) exists.

@@ -22,14 +22,24 @@ Delete a given user from memory
 int deleteUser(User* user);
 
 /*
-Create a new user node with User
-*/
-UserNode* createUserNode(User* user);
-
-/*
 Add a new user to linked list "Users"
 */
-int addUser(UserNode* users, User* user_ptr);
+int addUserToList(UserNode* users, User* user_ptr);
+
+/*
+ * Prints a single User
+ */
+void printUser(User* user);
+
+/*
+ * Print a single UserNode
+ */
+void printUserNode(UserNode* usernode);
+
+/*
+ * Print members of the linked list (TO DELETE, FOR DEBUGGING ONLY, NOT SECURE)
+ */
+void printUserList(UserNode* head);
 
 /*
 Delete a user from linked list given username and password
